@@ -1,4 +1,5 @@
 import {window, StatusBarAlignment, StatusBarItem} from 'vscode';
+import * as vscode from 'vscode';
 import {Mode, ModeName} from './mode';
 import {showCmdLine} from './../cmd_line/main';
 import CommandMode from './mode_command';
@@ -39,22 +40,29 @@ export default class ModeHandler {
 
         switch (currentModeName) {
             case ModeName.Normal:
-                if (key === "i" || key === "a" || key === "I" || key === "A" || key === "o" || key === "O") {
-                    this.SetCurrentModeByName(ModeName.Insert);
-                    isHandled = true;
-                } else if (key === ":") {
-                    showCmdLine();
-                    isHandled = true;
+                switch (key) {
+                    case 'i', 'a', 'A', 'o', 'O':
+                        this.SetCurrentModeByName(ModeName.Insert);
+                        isHandled = true;
+                        break;
+                    case ':':
+                        showCmdLine();
+                        isHandled = true;
+                        break;
+                    case 'esc':
+                        vscode.commands.executeCommand('workbench.action.closeMessages');
+                        isHandled = true;
+                        break;
                 }
-            break;
+                break;
             case ModeName.Insert:
-                if (key === "esc") {
+                if (key === 'esc') {
                     this.SetCurrentModeByName(ModeName.Normal);
                     isHandled = true;
                 }
-            break;
+                break;
             case ModeName.Visual:
-            break;
+                break;
         }
 
         if (!isHandled) {
@@ -67,7 +75,7 @@ export default class ModeHandler {
             this.statusBarItem = window.createStatusBarItem(StatusBarAlignment.Left);
         }
 
-        this.statusBarItem.text = 'vim: ' + text;
+        this.statusBarItem.text = "vim: " + text;
         this.statusBarItem.show();
     }
 }
