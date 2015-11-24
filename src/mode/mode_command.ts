@@ -22,6 +22,7 @@ export default class CommandMode extends Mode {
             case ':':
                 showCmdLine();
                 break;
+            // navigation
             case 'h':
                 vscode.commands.executeCommand("cursorLeft");
                 break;
@@ -34,6 +35,18 @@ export default class CommandMode extends Mode {
             case 'l':
                 vscode.commands.executeCommand("cursorRight");
                 break;
+			case 'w':
+				vscode.commands.executeCommand("cursorWordRight");
+				break;
+			case 'b':
+				vscode.commands.executeCommand("cursorWordLeft");
+				break;
+            case '$':
+				vscode.commands.executeCommand("cursorHome");
+				break;
+			case '^':
+				vscode.commands.executeCommand("cursorEnd");
+				break;
         }
     }
 }
