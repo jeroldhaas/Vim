@@ -35,18 +35,31 @@ export default class CommandMode extends Mode {
             case 'l':
                 vscode.commands.executeCommand("cursorRight");
                 break;
-			case 'w':
+			case 'e':
 				vscode.commands.executeCommand("cursorWordRight");
 				break;
 			case 'b':
 				vscode.commands.executeCommand("cursorWordLeft");
 				break;
+            // TODO: currently doesn't meet spec, doesn't place at beginning of word after finding word.
+            case 'w':
+                vscode.commands.executeCommand("cursorWordRight");
+                break;
             case '$':
 				vscode.commands.executeCommand("cursorHome");
 				break;
 			case '^':
 				vscode.commands.executeCommand("cursorEnd");
 				break;
+			// editing
+            /*
+			case 's':
+				// TODO: complete substitute command
+				vscode.commands.executeCommand("substituteText");
+				break;
+			case 'r':
+				vscode.commands.executeCommand("replaceText", vscode.Selection);
+            */
         }
     }
 }
