@@ -13,7 +13,7 @@ export default class CommandMode extends Mode {
 
     HandleActivation(key : string) : void {
         // do nothing
-    }    
+    }
 
     HandleKeyEvent(key : string) : void {
         this.keyHistory.push(key);
@@ -35,30 +35,22 @@ export default class CommandMode extends Mode {
             case 'l':
                 vscode.commands.executeCommand("cursorRight");
                 break;
-<<<<<<< HEAD
 			case 'e':
-=======
-			case 'w':
->>>>>>> 0d69e93... Add word & line navigation (incomplete)
 				vscode.commands.executeCommand("cursorWordRight");
 				break;
 			case 'b':
 				vscode.commands.executeCommand("cursorWordLeft");
 				break;
-<<<<<<< HEAD
             // TODO: currently doesn't meet spec, doesn't place at beginning of word after finding word.
             case 'w':
                 vscode.commands.executeCommand("cursorWordRight");
                 break;
-=======
->>>>>>> 0d69e93... Add word & line navigation (incomplete)
             case '$':
 				vscode.commands.executeCommand("cursorHome");
 				break;
 			case '^':
 				vscode.commands.executeCommand("cursorEnd");
 				break;
-<<<<<<< HEAD
 			// editing
             /*
 			case 's':
@@ -68,8 +60,6 @@ export default class CommandMode extends Mode {
 			case 'r':
 				vscode.commands.executeCommand("replaceText", vscode.Selection);
             */
-=======
->>>>>>> 0d69e93... Add word & line navigation (incomplete)
         }
     }
 }
